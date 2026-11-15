@@ -27,6 +27,8 @@ dependencies = [
 [project.scripts]
 dex-supermimic-train = "dex_supermimic.rl.dex_supermimic.cli:train"
 dex-supermimic-play = "dex_supermimic.rl.dex_supermimic.cli:play"
+z5-supermimic-train = "dex_supermimic.rl.z5_supermimic.cli:train"
+z5-supermimic-play = "dex_supermimic.rl.z5_supermimic.cli:play"
 
 [tool.uv]
 environments = [
