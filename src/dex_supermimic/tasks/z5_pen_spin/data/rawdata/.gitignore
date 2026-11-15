@@ -1,0 +1,5 @@
+# Generated clip catalog: reproducible from the deploy bundle reference.npz via
+#   uv run python -m dex_supermimic.tasks.z5_pen_spin.tooling.convert_reference \
+#       --reference .../generated/deploy/z5-pen-spin/reference.npz
+# Kept out of git (derived data, ~4 MB); only the converter + recipe are tracked.
+clips/
