@@ -1,0 +1,572 @@
+{
+  "schema": "dex_supermimic_z5_sysid_v1",
+  "joint_friction": "stribeck",
+  "friction_transition_speed": 0.05,
+  "backend": "newton_mjwarp",
+  "parameter_names": [
+    "stiffness",
+    "damping",
+    "effort_limit",
+    "armature",
+    "friction",
+    "dynamic_friction",
+    "viscous_friction"
+  ],
+  "physics_dt": 0.005,
+  "num_substeps": 1,
+  "command_hz": 50,
+  "delay_steps": 0,
+  "max_samples": null,
+  "config_sha256": "0d27a0e1ca957af0ea9f53fc98bc66f6bbfed499eaf85b14ef12c26f575becda",
+  "asset_sha256": "81e3a27fe7d5dee04db06c8ee06d027918ff9605eb879121980c5eff1d147127",
+  "canonical_model_sha256": "f20af069247d36bb3c11c5b30e5c655297ff7320374fa908d849d2f795577aa4",
+  "solver_iterations": 100,
+  "solver_ls_iterations": 50,
+  "gravity": [
+    0.0,
+    0.0,
+    -9.81
+  ],
+  "root_rotation_wxyz": [
+    0.6715400385400196,
+    -0.012451000714569177,
+    -0.13539300777027263,
+    0.7283870418024977
+  ],
+  "recording_metadata": {
+    "1": {
+      "policy": "z5-pen-spin ONNX, action = residual on reference (scale 0.5, EMA 0.3, clip +-0.6)",
+      "gains": {
+        "kp": 2.0,
+        "kd": 0.1,
+        "applied": "per MotorCmd_ every 50 Hz tick"
+      },
+      "wire_convention": "urdf20261103 (thumb_pitch, little_pitch, little_roll1 sign-flipped vs DDS)",
+      "no_pen": true,
+      "held_joints": "non-moving joints are driven to and logged at the per-file flat rest_pose"
+    }
+  },
+  "data_sha256": {
+    "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/data/sysid_thumb.npz": "270400d2d77eb616629ac80db3d016ff6f1689179cd5886d777331a2c49f40cf",
+    "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/data/sysid_index.npz": "a90706a383c739cf0ae6cc0ed568989cba41c307d64c92bf00bdbe0d0c1ff510",
+    "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/data/sysid_middle.npz": "4e2ab3792ffc1f88b8b3c294a70bb7d9fdaea0b961c111eb215fe11ed0716bb9",
+    "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/data/sysid_ring.npz": "ee86addecf0b5a70bcacb077b91578f6e8b879dcdbe3f398aff9b687608e2322",
+    "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/data/sysid_little.npz": "5400d75f8f67da2272eca1ea087412221045f4f3e61c3d7782816d2f96de9138"
+  },
+  "sample_phase": {
+    "1": "before_command"
+  },
+  "clip_counts": {
+    "1": 9
+  },
+  "versions": {
+    "isaaclab": "41.0.1",
+    "isaaclab-newton": "10.0.0",
+    "newton": "1.8.0.dev0",
+    "warp-lang": "1.17.0",
+    "torch": "2.11.0+cu130",
+    "numpy": "2.5.1"
+  },
+  "data_schema_sha256": "c068ef63da8e0f988438467e71b3c44ddcb32d5c7f8bf20f2cb3072a11b649b7",
+  "fitted_fingers": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "joints": [
+    {
+      "name": "right_thumb_pitch_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.6863758530411914,
+        "damping": 0.11317254848694017,
+        "effort_limit": 1.3904316921124003,
+        "armature": 0.0010032447125137792,
+        "friction": 0.05851843763583797,
+        "dynamic_friction": 0.04500267387943597,
+        "viscous_friction": 0.006616936619369042
+      }
+    },
+    {
+      "name": "right_thumb_roll_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.4,
+        "damping": 0.09836431846824274,
+        "effort_limit": 1.2535081239554515,
+        "armature": 0.0013628287291694104,
+        "friction": 0.21962187251570775,
+        "dynamic_friction": 0.09893018075409739,
+        "viscous_friction": 0.005572752081379151
+      }
+    },
+    {
+      "name": "right_thumb_yaw1_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.493486003919407,
+        "damping": 0.10614950540637068,
+        "effort_limit": 1.3065523850093002,
+        "armature": 0.001003439387449722,
+        "friction": 0.19617658740702335,
+        "dynamic_friction": 0.06926440892713338,
+        "viscous_friction": 0.006216404217255032
+      }
+    },
+    {
+      "name": "right_thumb_yaw2_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.9051450308659155,
+        "damping": 0.12355450051354862,
+        "effort_limit": 0.7109549536856938,
+        "armature": 0.0002578393701755076,
+        "friction": 0.057616255986035064,
+        "dynamic_friction": 0.03469879619976704,
+        "viscous_friction": 0.0045836241737082515
+      }
+    },
+    {
+      "name": "right_thumb_yaw3_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.85464181265977,
+        "damping": 0.10010011182446128,
+        "effort_limit": 0.6970377392499743,
+        "armature": 0.0001804887445232354,
+        "friction": 0.09301879508029139,
+        "dynamic_friction": 0.036124740288953926,
+        "viscous_friction": 0.004258918380694514
+      }
+    },
+    {
+      "name": "right_index_finger_roll1_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.4369199414322562,
+        "damping": 0.10024894831490763,
+        "effort_limit": 1.3137953805937452,
+        "armature": 0.0012428061617293855,
+        "friction": 0.05325,
+        "dynamic_friction": 0.05324999999999999,
+        "viscous_friction": 0.006668953855571915
+      }
+    },
+    {
+      "name": "right_index_finger_yaw_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.4831370414543001,
+        "damping": 0.11183110386409621,
+        "effort_limit": 0.6927011587222038,
+        "armature": 0.0004572111142948376,
+        "friction": 0.07352121599431255,
+        "dynamic_friction": 0.029991587720029557,
+        "viscous_friction": 0.00026228909668252686
+      }
+    },
+    {
+      "name": "right_index_finger_roll2_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.8828925642409748,
+        "damping": 0.13,
+        "effort_limit": 0.6900302617681029,
+        "armature": 0.00014416812179975785,
+        "friction": 0.08772559094195476,
+        "dynamic_friction": 0.03369249772287993,
+        "viscous_friction": 0.0045425099065606505
+      }
+    },
+    {
+      "name": "right_index_finger_roll3_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.8122018918262928,
+        "damping": 0.1122656741434815,
+        "effort_limit": 0.7357695098495973,
+        "armature": 0.0002475102636189803,
+        "friction": 0.09820745278548562,
+        "dynamic_friction": 0.03734520770281308,
+        "viscous_friction": 0.004798534995162086
+      }
+    },
+    {
+      "name": "right_middle_finger_roll1_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.4784685804888416,
+        "damping": 0.1019430973292913,
+        "effort_limit": 1.3894004440693368,
+        "armature": 0.0009861358251292845,
+        "friction": 0.10260440881972309,
+        "dynamic_friction": 0.0355,
+        "viscous_friction": 0.007184112707928779
+      }
+    },
+    {
+      "name": "right_middle_finger_yaw_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 2.0552457164618647,
+        "damping": 0.12496187423069878,
+        "effort_limit": 0.7264101290107563,
+        "armature": 0.00021969367086160617,
+        "friction": 0.0637099891802596,
+        "dynamic_friction": 0.028644675801079194,
+        "viscous_friction": 0.003426001573927778
+      }
+    },
+    {
+      "name": "right_middle_finger_roll2_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.6441932563261512,
+        "damping": 0.1201409560852757,
+        "effort_limit": 0.702671320944387,
+        "armature": 0.00037005690218354164,
+        "friction": 0.10276022348854769,
+        "dynamic_friction": 0.025822822679080655,
+        "viscous_friction": 0.0034646889676327804
+      }
+    },
+    {
+      "name": "right_middle_finger_roll3_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.646169074356064,
+        "damping": 0.12639401978363338,
+        "effort_limit": 0.6889017027784581,
+        "armature": 0.0004333648108983022,
+        "friction": 0.09729217530280894,
+        "dynamic_friction": 0.03808414477923382,
+        "viscous_friction": 0.004868033832779871
+      }
+    },
+    {
+      "name": "right_ring_finger_roll1_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.4005871759244628,
+        "damping": 0.10000937197841153,
+        "effort_limit": 1.46,
+        "armature": 0.0004201101033246986,
+        "friction": 0.17592169482219347,
+        "dynamic_friction": 0.06171571899163037,
+        "viscous_friction": 0.0034133669024425323
+      }
+    },
+    {
+      "name": "right_ring_finger_yaw_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.7496592381684968,
+        "damping": 0.11663722679348164,
+        "effort_limit": 0.6988128016695738,
+        "armature": 0.00041009307253184505,
+        "friction": 0.11521565432908602,
+        "dynamic_friction": 0.028126306948144924,
+        "viscous_friction": 0.003169997948549903
+      }
+    },
+    {
+      "name": "right_ring_finger_roll2_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.600623476945422,
+        "damping": 0.11247631210011218,
+        "effort_limit": 0.6776783253813213,
+        "armature": 0.0003250672460476935,
+        "friction": 0.1300304723755888,
+        "dynamic_friction": 0.03720050873424722,
+        "viscous_friction": 0.0018124084156308706
+      }
+    },
+    {
+      "name": "right_ring_finger_roll3_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.5637978538593957,
+        "damping": 0.11421049854447818,
+        "effort_limit": 0.7354601081608485,
+        "armature": 0.00028231254315280263,
+        "friction": 0.036,
+        "dynamic_friction": 0.025435345180686346,
+        "viscous_friction": 0.0033224925626249577
+      }
+    },
+    {
+      "name": "right_little_finger_pitch_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 2.037291518785318,
+        "damping": 0.11876603203936525,
+        "effort_limit": 0.6995315912409359,
+        "armature": 0.0003402870787511864,
+        "friction": 0.036,
+        "dynamic_friction": 0.036,
+        "viscous_friction": 0.0075077527089330905
+      }
+    },
+    {
+      "name": "right_little_finger_roll1_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 1.46,
+        "armature": 0.00045827695326720386,
+        "friction": 0.1065,
+        "dynamic_friction": 0.071,
+        "viscous_friction": 0.00355
+      },
+      "fitted": {
+        "stiffness": 1.4295568341910265,
+        "damping": 0.0865327852302862,
+        "effort_limit": 1.3147082966211048,
+        "armature": 0.001142711124990405,
+        "friction": 0.1664952008725782,
+        "dynamic_friction": 0.04335426863637424,
+        "viscous_friction": 0.006427198680216758
+      }
+    },
+    {
+      "name": "right_little_finger_yaw_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.91837354911845,
+        "damping": 0.12153478922252191,
+        "effort_limit": 0.6604088131882565,
+        "armature": 0.0003741597296022628,
+        "friction": 0.07209070642712892,
+        "dynamic_friction": 0.03908629754387456,
+        "viscous_friction": 0.005859409818660149
+      }
+    },
+    {
+      "name": "right_little_finger_roll2_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.7261651337671426,
+        "damping": 0.11458244890789984,
+        "effort_limit": 0.6995042784616065,
+        "armature": 0.00013472619166088768,
+        "friction": 0.11660426800918608,
+        "dynamic_friction": 0.05276048207368728,
+        "viscous_friction": 0.003858009672844755
+      }
+    },
+    {
+      "name": "right_little_finger_roll3_joint",
+      "identified": true,
+      "baseline": {
+        "stiffness": 2.0,
+        "damping": 0.1,
+        "effort_limit": 0.75,
+        "armature": 0.00015240370476494588,
+        "friction": 0.072,
+        "dynamic_friction": 0.048,
+        "viscous_friction": 0.0024
+      },
+      "fitted": {
+        "stiffness": 1.9892519792770593,
+        "damping": 0.11038268044414808,
+        "effort_limit": 0.6420622606096456,
+        "armature": 0.00019538840786592222,
+        "friction": 0.07949345324806878,
+        "dynamic_friction": 0.030827467865400283,
+        "viscous_friction": 0.008426775516674598
+      }
+    }
+  ],
+  "worker_runs": {
+    "1": "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/finger1",
+    "2": "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/finger2",
+    "3": "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/finger3",
+    "4": "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/finger4",
+    "5": "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/finger5"
+  },
+  "data_audit": "/mnt/workspace/Documents/Dex-SuperMimic-isaaclab-native/outputs/sysid/pen_spin_20261111_2f2af33f/data_audit.json"
+}
