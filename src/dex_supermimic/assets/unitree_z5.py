@@ -74,14 +74,21 @@ COLLISION_SOLREF = (0.02, 1.5)
 COLLISION_SOLIMP = (0.9, 0.95, 0.001, 0.5, 2.0)
 
 # --- Optional hardware rig (NOT in scene.mjb; deploy-side only) -------------
-# The calibration jig ``wuji-mjlab/deploy/pen_spin/scenes/z5_jig_preview.xml``
-# holds the hand by a wrist tag mount and sits it 106.209 mm above a floor.
-# Both transforms below are read out of that MJCF with mj_forward (palm_link
-# resolves to identity at the jig origin, so the jig world frame IS the palm
-# frame, and these are palm-frame values directly).
-WRIST_MOUNT_POS = (0.001634, -0.045862, -0.048445)
-WRIST_MOUNT_QUAT_WXYZ = (0.70697944, 0.70712965, 0.00856555, -0.0086228)
-JIG_FLOOR_Z_IN_PALM = -0.106209
+# The wrist tag mount is a PEDESTAL used as the bench stand: the counterbored
+# flange face (4 countersunk holes, 52 cm2) bolts to the palm back, and the
+# small plate face (4.7 cm2) rests on the bench. The pose below is that as-built
+# orientation: flange face on the palm back plane (13.9 mm behind the palm
+# origin, per the palm collision mesh bbox), plate face on the bench plane
+# 97.409 mm below the palm origin, local z keeping the jig's horizontal
+# direction. Derived from wrist_tag_mount.STL face centroids plus the fixed palm
+# world pose; verified: mount world z 0.4032..0.4869, plate face coplanar with
+# the bench to 5e-6 m, and the reference pen trajectory grazes both (pen lowest
+# world z 0.4031 vs bench 0.4032) -- the real rig does touch the pen.
+WRIST_MOUNT_POS = (-0.072845856, -0.047114208, -0.157080845)
+WRIST_MOUNT_QUAT_WXYZ = (0.395386519, 0.511680391, 0.586213305, -0.488064175)
+# Bench plane offset below the palm origin (palm world z 0.500659 -> bench
+# world z 0.403250). Equals palm-back offset 0.0139 + flange-to-plate 0.083509.
+RIG_TABLE_OFFSET_BELOW_PALM = 0.097409174
 # Contype/conaffinity chosen so the rig collides ONLY with the pen (contype 1 /
 # conaffinity 2), never with the hand (contype 1 / conaffinity 1) or the ground:
 #   rig(2,0) vs pen(1,2):  2 & 2 = 2  -> contact
@@ -191,13 +198,14 @@ def _unroot_palm_fold(spec: mujoco.MjSpec) -> mujoco.MjSpec:
 
 
 def inject_z5_rig(spec: mujoco.MjSpec) -> mujoco.MjSpec:
-  """Attach the hardware rig: wrist tag mount + the bench floor plane.
+  """Attach the hardware rig: wrist tag mount + the bench plane.
 
-  Off by default. The mount mesh is bolted to palm_link at the jig-measured
-  palm-frame pose; the floor plane sits 106.209 mm below the palm (the jig's
-  floor). Both get contype=2/conaffinity=0 so they touch ONLY the pen
+  Off by default. The mount is a pedestal standing palm-back-to-bench: its
+  counterbored flange face meets the palm back plane and its small plate face
+  rests on the bench plane 97.409 mm below the palm origin (see WRIST_MOUNT_*
+  constants). Both geoms get contype=2/conaffinity=0 so they touch ONLY the pen
   (contype 1 / conaffinity 2) -- the mount must never collide with the hand it
-  is bolted to, and the floor must not fight the hand's own collision geoms.
+  is bolted to, and the bench must not fight the hand's own collision geoms.
   """
   filename = Z5_WRIST_MOUNT_MESH.name
   spec.add_mesh(name="wrist_tag_mount", content_type="model/stl", file=filename)
@@ -221,14 +229,15 @@ def inject_z5_rig(spec: mujoco.MjSpec) -> mujoco.MjSpec:
   )
   # Bench floor: a child of the palm body, but ORIENTED WORLD-HORIZONTAL by
   # pre-multiplying the inverse of the fixed palm world quaternion, and placed
-  # exactly JIG_FLOOR_Z_IN_PALM below the palm origin in world z. Verified:
-  # world normal == [0,0,1] and world z == palm_z - 0.106209 for any palm
-  # orientation. The reference pen trajectory dips to 84.4 mm below the palm,
-  # leaving ~2.2 cm clearance to this plane.
+  # RIG_TABLE_OFFSET_BELOW_PALM below the palm origin in world z (palm world z
+  # 0.500659 -> bench world z 0.403764). Verified: world normal == [0,0,1] and
+  # the mount's flange face is coplanar with it to 5e-6 m. The reference pen
+  # trajectory dips to world z 0.4031, i.e. it grazes the bench -- matching the
+  # real rig where the pen does touch the table.
   pq = np.asarray(PALM_BODY_QUAT_WXYZ, dtype=np.float64)
   pq_inv = (pq[0], -pq[1], -pq[2], -pq[3])
   R = _quat_to_mat(pq)
-  floor_local_pos = R.T @ np.array((0.0, 0.0, JIG_FLOOR_Z_IN_PALM))
+  floor_local_pos = R.T @ np.array((0.0, 0.0, -RIG_TABLE_OFFSET_BELOW_PALM))
   palm.add_geom(
     name="rig_floor",
     type=mujoco.mjtGeom.mjGEOM_PLANE,
