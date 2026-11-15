@@ -52,6 +52,16 @@ class Z5PenMDP(PenMDP):
     self.camera_enabled = env.cfg.observations["policy"].enable_corruption
     self.mask_cfg = env.cfg.actions["joint_pos"]
     self.env = env
+    # Regenerated reference-contact table (tooling/generate_surface_contacts).
+    # None when absent: the three reference_contact terms then stay out of the
+    # reward exactly as in the pre-task-#6 build.
+    from dex_supermimic.tasks.z5_pen_spin.mdp.rewards import load_surface_table
+
+    self.surface_table = load_surface_table()
+    if self.surface_table is not None:
+      self.surface_table = {
+        key: value.to(env.device) for key, value in self.surface_table.items()
+      }
     import hashlib
 
     digest = hashlib.sha256()
@@ -117,6 +127,20 @@ class Z5PenMDP(PenMDP):
       # Checkpoint config: hand_pen_contact_weight=0.1, mirroring the simulator
       # term (mean activated channel, capped at 3 like the env reward).
       terms["hand_pen_contact"] = 0.1 * hpc.sum(-1).clamp(max=3.0) / 3.0
+      if self.surface_table is not None:
+        # Checkpoint config: reference_contact 0.1 / axial 0.05 / surface 0.05,
+        # shaped off the regenerated z5_surface.npz.
+        from dex_supermimic.tasks.z5_pen_spin.mdp.rewards import reference_contact_terms
+
+        frame = (memory["start"] + memory["time"].clamp_min(0)).minimum(
+          memory["end"] - 1
+        ).long().squeeze(-1)
+        match, axial, surface = reference_contact_terms(
+          links, pos, rot, hpc, self.surface_table, frame
+        )
+        terms["reference_contact"] = 0.1 * match
+        terms["reference_contact_axial"] = 0.05 * axial
+        terms["reference_contact_surface"] = 0.05 * surface
     terms = {name: value * self.dt for name, value in terms.items()}
     return sum(terms.values()), charge, terms
 

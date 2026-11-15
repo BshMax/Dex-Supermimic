@@ -43,6 +43,9 @@ from dex_supermimic.assets.unitree_z5 import get_unitree_z5_cfg
 from dex_supermimic.tasks.z5_pen_spin import mdp
 from dex_supermimic.tasks.z5_pen_spin.z5_constants import (
   AXIS_POINT_RADIUS_M,
+  REF_CONTACT_AXIAL_WEIGHT,
+  REF_CONTACT_SURFACE_WEIGHT,
+  REF_CONTACT_WEIGHT,
   Z5_DISTAL_LINK_NAMES,
   Z5_FINGER_COLLISION_GEOMS,
   Z5_HAND_PEN_CONTACT_BODIES,
@@ -543,6 +546,18 @@ def _configure_z5_rewards_sensors(cfg: ManagerBasedRlEnvCfg, *, play: bool) -> N
   # Checkpoint: hand_pen_contact_weight=0.1 (shaped stable-contact reward).
   cfg.rewards["hand_pen_contact"] = RewardTermCfg(
     func=mdp.hand_pen_contact_reward, weight=0.1
+  )
+  # Checkpoint: reference_contact 0.1 / axial 0.05 / surface 0.05, shaped off
+  # the regenerated z5_surface.npz. The terms no-op (return 0) if the table is
+  # missing, so play builds without the data stay valid.
+  cfg.rewards["reference_contact"] = RewardTermCfg(
+    func=mdp.reference_contact_reward, weight=REF_CONTACT_WEIGHT
+  )
+  cfg.rewards["reference_contact_axial"] = RewardTermCfg(
+    func=mdp.reference_contact_axial_reward, weight=REF_CONTACT_AXIAL_WEIGHT
+  )
+  cfg.rewards["reference_contact_surface"] = RewardTermCfg(
+    func=mdp.reference_contact_surface_reward, weight=REF_CONTACT_SURFACE_WEIGHT
   )
 
   if play:

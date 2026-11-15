@@ -163,6 +163,45 @@ Z5_DISTAL_LINK_NAMES = (
   "right_little_finger_roll3_link",
 )
 
+# For each of the 21 reference sites, the hand body whose hand_pen_contact
+# channel gates the reference-contact reward terms (tip sites ride on the
+# distal roll3 link; the palm site on palm_link). Aligned with Z5_LINK_NAMES.
+Z5_SITE_CONTACT_BODIES = (
+  "palm_link",
+  "right_thumb_roll_link",
+  "right_thumb_yaw2_link",
+  "right_thumb_yaw3_link",
+  "right_thumb_yaw3_link",
+  "right_index_finger_roll1_link",
+  "right_index_finger_roll2_link",
+  "right_index_finger_roll3_link",
+  "right_index_finger_roll3_link",
+  "right_middle_finger_roll1_link",
+  "right_middle_finger_roll2_link",
+  "right_middle_finger_roll3_link",
+  "right_middle_finger_roll3_link",
+  "right_ring_finger_roll1_link",
+  "right_ring_finger_roll2_link",
+  "right_ring_finger_roll3_link",
+  "right_ring_finger_roll3_link",
+  "right_little_finger_roll1_link",
+  "right_little_finger_roll2_link",
+  "right_little_finger_roll3_link",
+  "right_little_finger_roll3_link",
+)
+
+# Reference-contact reward shaping (model_final.pt config keys
+# reference_contact_axial_*/reference_contact_surface_*): deadband tolerance
+# then gaussian sigma, plus the confidence gate from z5_surface.npz.
+REF_CONTACT_AXIAL_TOLERANCE = 0.005
+REF_CONTACT_AXIAL_SIGMA = 0.01
+REF_CONTACT_SURFACE_TOLERANCE = 0.002
+REF_CONTACT_SURFACE_SIGMA = 0.005
+REF_CONTACT_MIN_CONFIDENCE = 0.5
+REF_CONTACT_WEIGHT = 0.1
+REF_CONTACT_AXIAL_WEIGHT = 0.05
+REF_CONTACT_SURFACE_WEIGHT = 0.05
+
 # policy_config.json joint_limits, matching the MJCF ranges exactly.
 Z5_JOINT_LIMITS = (
   (0.0, 1.57), (-1.57, 0.13), (0.0, 2.61), (-1.62, 0.07), (-1.62, 0.07),

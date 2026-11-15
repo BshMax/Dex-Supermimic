@@ -21,4 +21,7 @@ from .observations import (  # noqa: F401
 from .rewards import (  # noqa: F401
   finger_self_collision_penalty,
   hand_pen_contact_reward,
+  reference_contact_axial_reward,
+  reference_contact_reward,
+  reference_contact_surface_reward,
 )
